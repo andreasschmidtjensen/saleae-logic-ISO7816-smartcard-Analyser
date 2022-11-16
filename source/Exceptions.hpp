@@ -16,7 +16,7 @@ class DecoderException : public std::exception
 {
 public:
 	DecoderException(unsigned long long int pos, const char* msg)
-		: std::exception(msg)
+		: std::exception(/*FIXME msg*/)
 	{
 		_pos = pos;
 	}

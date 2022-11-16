@@ -1,21 +1,35 @@
-SDK=../SaleaeAnalyzerSdk-1.1.9
-DYLIB=libISO7816Analyzer.dylib
+SDK=../../AnalyzerSDK/
+SOLIB=libISO7816Analyzer.so
 
-SRCS=iso7816Analyzer.cpp iso7816AnalyzerResults.cpp iso7816AnalyzerSettings.cpp iso7816SimulationDataGenerator.cpp
+SRCS= \
+Convert.cpp \
+iso7816Analyzer.cpp \
+iso7816AnalyzerResults.cpp \
+iso7816AnalyzerSettings.cpp \
+ISO7816Atr.cpp \
+Iso7816BitDecoder.cpp \
+ISO7816Pps.cpp \
+Iso7816Session.cpp \
+iso7816SimulationDataGenerator.cpp \
+Logging.cpp \
+ProtocolFrames.cpp \
+SaleaeHelper.cpp \
+Util.cpp \
+
 GDB=-g -ggdb
 
-CFLAGS=-I"$(SDK)/include" -I. -O3 -w -c -fpic -Wall $(GDB) -m32
-LDFLAGS=-L/Applications/Logic.app/Contents/MacOS  -lAnalyzer -dynamiclib  $(GDB) -m32
+CFLAGS=-I$(SDK)/include -I. -O3 -w -c -fpic -Wall $(GDB)
+LDFLAGS=-L$(SDK)/lib -lAnalyzer -shared $(GDB)
 OBJECTS=$(SRCS:.cpp=.o)
 CC=g++
 
-all: clean $(OBJECTS) $(DYLIB) Makefile
+all: clean $(OBJECTS) $(SOLIB) Makefile
 
 clean:
-	rm -f $(OBJECTS) $(DYLIB)
+	rm -f $(OBJECTS) $(SOLIB)
 
 .cpp.o:
 	$(CC) $(CFLAGS) $< -o $@
 
-$(DYLIB): $(OBJECTS)
-	$(CC) $(LDFLAGS) -o $(DYLIB) $(OBJECTS)
+$(SOLIB): $(OBJECTS)
+	$(CC) $(LDFLAGS) -o $(SOLIB) $(OBJECTS)
