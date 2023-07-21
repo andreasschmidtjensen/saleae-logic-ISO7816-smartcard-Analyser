@@ -29,10 +29,10 @@ public:
 	Channel mVccChannel, mResetChannel, mClkChannel, mIoChannel;
 
 protected:
-	std::auto_ptr< AnalyzerSettingInterfaceChannel >	mVccChannelInterface;
-	std::auto_ptr< AnalyzerSettingInterfaceChannel >	mResetChannelInterface;
-	std::auto_ptr< AnalyzerSettingInterfaceChannel >	mClkChannelInterface;
-	std::auto_ptr< AnalyzerSettingInterfaceChannel >	mIoChannelInterface;
+	std::unique_ptr< AnalyzerSettingInterfaceChannel >	mVccChannelInterface;
+	std::unique_ptr< AnalyzerSettingInterfaceChannel >	mResetChannelInterface;
+	std::unique_ptr< AnalyzerSettingInterfaceChannel >	mClkChannelInterface;
+	std::unique_ptr< AnalyzerSettingInterfaceChannel >	mIoChannelInterface;
 };
 
 #endif //ISO7816_ANALYZER_SETTINGS

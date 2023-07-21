@@ -3,3 +3,5 @@ xcuserdata/
 *.dylib
 *.o
 *.so
+build/
+.DS_Store
